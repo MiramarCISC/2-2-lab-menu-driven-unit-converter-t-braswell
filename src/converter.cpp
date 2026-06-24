@@ -3,46 +3,43 @@
 
 using namespace std;
 
+double KILOGRAMS_PER_POUND = 0.4535924;
+
+
 double inchesToCentimeters(double inches) {
-    // TODO: return inches converted to centimeters.
-    return 0.0;
+  return inches * CENTIMETERS_PER_INCH;
 }
 
 double centimetersToInches(double centimeters) {
-    // TODO: return centimeters converted to inches.
-    return 0.0;
+    return centimeters / CENTIMETERS_PER_INCH;
 }
 
 double poundsToKilograms(double pounds) {
-    // TODO: return pounds converted to kilograms.
-    return 0.0;
+    return pounds * KILOGRAMS_PER_POUND;
 }
 
 double kilogramsToPounds(double kilograms) {
-    // TODO: return kilograms converted to pounds.
-    return 0.0;
+    return kilograms / KILOGRAMS_PER_POUND;
 }
 
 double fahrenheitToCelsius(double fahrenheit) {
-    // TODO: return Fahrenheit converted to Celsius.
-    return 0.0;
+  // NOTE: c=5/9 * (f-32)
+  return 5.0 * (fahrenheit - 32) / 9.0 ;
 }
 
 double celsiusToFahrenheit(double celsius) {
-    // TODO: return Celsius converted to Fahrenheit.
-    return 0.0;
+  // f=9/5 * c + 32
+    return 9.0/5.0 * celsius + 32 ;
 }
 
 bool isValidMenuChoice(int choice) {
-    // TODO: return true when choice is between EXIT_CHOICE and CELSIUS_TO_FAHRENHEIT.
-    return false;
+  return choice <= 6 && choice >=0;
 }
 
 bool requiresNonNegativeValue(int choice) {
     // Length and weight conversions cannot use negative values.
     // Temperature conversions may use negative values.
-    // TODO: return true for choices 1 through 4.
-    return false;
+  return choice >=0 && choice <=4;
 }
 
 bool isValidValueForChoice(int choice, double value) {
@@ -50,7 +47,13 @@ bool isValidValueForChoice(int choice, double value) {
     // 1. Invalid menu choices should return false.
     // 2. Length and weight conversions should reject negative values.
     // 3. Temperature conversions should allow negative values.
+  if (isValidMenuChoice(choice) == false) {
     return false;
+  }
+  if (requiresNonNegativeValue(choice) == true ) {
+    return (value >= 0); 
+  }
+  else {return true;}
 }
 
 void printMenu() {
